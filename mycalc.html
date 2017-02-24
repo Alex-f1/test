@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="{$site.lang}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calc JS</title>
+    <!--<link rel="stylesheet" href="images/css/styles.scss.css">-->
+</head>
+
+<body>
+
+ <script>
+    var start = confirm('Калькулятор №1 - Нажать ОК; Калькулятор №2 - Нажать Отмена;');     
+ </script> 
+  <!--Калькулятор №1-->
+  <div class="hidden">
+      <input type="text" class="oneNum"><br><br>
+      <input type="text" class="operator"><br><br>
+      <input type="text" class="oneTwo"><br><br>
+      <button id="btn">Посчитать</button><br><br>
+      <div>Результат: <i class="result">0</i></div>
+  </div>
+  <!--Калькулятор №2-->
+    <div class="wrpBlock">
+        Результат: <span class="result">0</span>
+    </div>
+  
+  <script>
+    if  (start == true) {  
+        //var hidden = document.querySelector('.hidden');
+        //hidden.style.display = 'none';
+        
+        var num1 = document.querySelector('.oneNum');
+        var operator = document.querySelector('.operator');
+        var num2 = document.querySelector('.oneTwo');
+
+        var btn = document.getElementById('btn');
+        var result = document.querySelector('.result');
+
+        btn.onclick = function() {
+
+            if ( !isNaN(num1) || !isNaN(num2) ) {
+              result.innerHTML = 'Неправильное значение!!!';
+              return false;
+            }
+            if ( num1.value == '' || operator.value == '' || num2 == '' ) {
+              result.innerHTML = 'Заполнить все поля!!!';
+              return false;
+            }
+
+          if (operator.value == '+') {
+            var sum = +num1.value + +num2.value;
+          }
+          else if (operator.value == '-') {
+            var sum = +num1.value - +num2.value;
+          }
+          else if (operator.value == '*') {
+             var sum = +num1.value * +num2.value;
+          } 
+          else if (operator.value == '/') {
+             var sum = +num1.value / +num2.value;
+          } 
+
+          result.innerHTML = sum;
+        }
+
+    }  else {
+        //var hidden = document.querySelector('.wrpBlock');
+        //hidden.style.display = 'none';
+      
+        var num1 = Number( prompt("Ввести первое число:", "") );
+        var operator = prompt("Ввести оператор: + , - , * , /", "");
+        var num2 = Number( prompt("Ввести второе число:", ""));
+        
+        var result = document.querySelector('.result');
+      
+        if (operator == '+') {
+            var sum = num1 + num2;
+        }
+        else if (operator == '-') {
+            var sum = num1 - num2;
+        }
+        else if (operator == '*') {
+            var sum = num1 * num2;
+        }
+        else if (operator == '/') {
+            var sum = num1 / num2;
+        }
+      
+      result.innerHTML = sum;
+    }    
+    </script>
+    
+    
+    
+    
+</body>
+
+</html>
